@@ -1,0 +1,28 @@
+class Solution {
+    public String decodeMessage(String key, String message) {
+        Set<Character> set = new HashSet<>();
+        char ch1[]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        char ch[] = new char[26];
+        int j=0;
+        for(char c : key.toCharArray()){
+            if(c!=' ' && !set.contains(c)){
+                ch[j++]=c;
+                set.add(c);
+            }
+        }
+        Map<Character,Character> map = new HashMap<>();
+        for(int i=0;i<ch.length;i++){
+            map.put(ch[i],ch1[i]);
+         }
+        StringBuilder sb= new StringBuilder();
+        for(char ch3 : message.toCharArray()){
+            if(ch3==' '){
+                sb.append(' ');
+            }
+            else{
+                sb.append(map.get(ch3));
+            }
+        }
+        return sb.toString();
+    }
+}
